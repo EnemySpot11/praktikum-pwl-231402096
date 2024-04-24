@@ -1,8 +1,7 @@
 <?php
 
+use App\Http\Controllers\ToDoListController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TodoTaskController;
-// use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,32 +14,15 @@ use App\Http\Controllers\TodoTaskController;
 |
 */
 
-Route::get('/', [TodoTaskController::class, 'index']);
-Route::post('/', [TodoTaskController::class, 'tambah']);
+Route::get('/', [ToDoListController::class, 'index']);
 
-// Route::get('/', function () 
-//     return view('layout.main');
-// });
+Route::post('/', [ToDoListController::class, 'store']);
 
-// Route::get('/', function () {
-//     return view('footer');
-// });
+Route::delete('/tasks/{id}', [ToDoListController::class, 'destroy'])->name('tasks.destroy');
 
-// Route::get('/', function () {
-//     return view('landing');
-// });
+Route::get('/about', function () {
+    return view('welcome');
+});
 
 
-//  Route::get('/', function () {
-//      return view('articles');
-//  });
-
-//  Route::get('/aerticles?{article}', function ($slug) {
-//     $path = _DIR_ . "/resources/articles/($slug).php";
-
-//     $article = file_get_contents($path);
-
-//     return view('article',[
-//         'aarticle'=>$article
-//     ]);
-// });
+// Route::post('/tambahTask', [TodoTaskController::class, 'addTask']);
